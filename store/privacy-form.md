@@ -6,7 +6,7 @@
 
 ## 전용 목적 설명 (Single purpose)
 ```
-Gist has a single purpose: to help users understand the web page they are currently viewing by summarizing it, or by translating the page or the text they select, using AI. The user supplies their own OpenAI or Anthropic API key. When the user clicks the extension, Gist reads the current page's text (or the user's selection) and sends it to the chosen AI provider to produce a summary or translation, which is shown in the popup. The extension does not run in the background and has no other function.
+Gist has a single purpose: to help users understand the web page they are viewing by generating an AI summary of the page, or of the text they select. The user supplies their own OpenAI or Anthropic API key. When the user clicks the extension or chooses "Summarize with Gist" from the right-click menu, Gist reads the current page's text (or the user's selection) and sends it to the chosen AI provider to produce a summary, which is shown in the popup. The user can optionally translate that summary into another language. The extension does not run in the background and has no other function.
 ```
 
 ## activeTab 사용 근거
@@ -26,7 +26,7 @@ storage is used to save the user's own settings locally in the browser: their se
 
 ## contextMenus 사용 근거
 ```
-contextMenus adds two right-click items, "Summarize selection" and "Translate selection", which appear only when the user has selected text on a page. They let the user summarize or translate the selected text directly from the context menu. This permission is used solely to provide these user-initiated shortcuts.
+contextMenus adds a single right-click item, "Summarize with Gist", available on a page or when text is selected. It lets the user summarize the whole page, or just the selected text, directly from the context menu. This permission is used solely to provide this user-initiated shortcut.
 ```
 
 ## 호스트 권한 사용 근거 (host_permissions: api.openai.com, api.anthropic.com)
