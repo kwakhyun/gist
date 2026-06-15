@@ -1,10 +1,7 @@
 {
-  "appName": { "message": "Gist — 요약·번역" },
-  "appDesc": { "message": "본인의 API 키로 모든 웹페이지나 선택한 텍스트를 AI로 즉시 요약하고 번역합니다." },
+  "appName": { "message": "Gist — AI 요약" },
+  "appDesc": { "message": "웹페이지나 선택한 텍스트를 AI로 요약하고, 요약 결과를 원하는 언어로 번역합니다. 본인의 OpenAI 또는 Anthropic API 키를 사용합니다." },
   "actionTitle": { "message": "Gist" },
-
-  "tabSummarize": { "message": "요약" },
-  "tabTranslate": { "message": "번역" },
 
   "lengthLabel": { "message": "분량" },
   "lenShort": { "message": "짧게 (3문장)" },
@@ -13,18 +10,18 @@
   "selectionOnly": { "message": "선택 영역만" },
   "summarizeBtn": { "message": "이 페이지 요약하기" },
 
-  "targetLangLabel": { "message": "번역 언어" },
-  "translateBtn": { "message": "번역하기" },
-
   "copyBtn": { "message": "복사" },
   "copiedMsg": { "message": "복사됨!" },
   "settingsTitle": { "message": "설정" },
 
+  "translateLabel": { "message": "번역 언어" },
+  "translateBtn": { "message": "번역" },
+  "originalBtn": { "message": "원문" },
+
   "bannerNoKey": { "message": "API 키가 설정되지 않았습니다." },
   "bannerLink": { "message": "설정에서 키 입력하기" },
 
-  "ctxSummarize": { "message": "선택 영역 요약하기" },
-  "ctxTranslate": { "message": "선택 영역 번역하기" },
+  "ctxSummarize": { "message": "Gist로 요약하기" },
 
   "statusExtracting": { "message": "페이지에서 텍스트를 가져오는 중…" },
   "statusWorking": { "message": "AI가 작업 중입니다…" },

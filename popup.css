@@ -152,10 +152,24 @@ button.primary:disabled { opacity: 0.6; cursor: not-allowed; }
   color: var(--fg);
 }
 .result-actions {
-  margin-top: 8px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+}
+.result-actions .spacer { flex: 1 1 auto; }
+.result-actions .tlang {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--label);
+  font-weight: 500;
+}
+.result-actions .tlang select {
+  padding: 4px 6px;
+  font-size: 12px;
 }
 button.ghost {
   background: var(--panel);

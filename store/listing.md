@@ -12,14 +12,14 @@
 
 ---
 
-## 패키지 제목 (이미 입력됨)
+## 패키지 제목
 ```
-Gist — Summarize & Translate
+Gist — AI Summarizer
 ```
 
-## 패키지 요약 / 짧은 설명 (132자 이내, 이미 입력됨)
+## 패키지 요약 / 짧은 설명 (132자 이내)
 ```
-Instantly summarize and translate any web page or selected text with AI, using your own API key.
+Summarize any web page or selection with AI — then translate the summary into your language. Uses your own API key.
 ```
 
 ---
@@ -27,12 +27,13 @@ Instantly summarize and translate any web page or selected text with AI, using y
 ## 설명* (Description) — 영문, 아래 전체 복사
 
 ```
-Gist turns any web page into a quick, readable summary — and translates anything you select — right in your browser. No copy‑pasting into a chatbot, no separate tab. One click.
+Gist turns any web page into a quick, readable summary — right in your browser. No copy-pasting into a chatbot, no separate tab. One click. Then, if you want, translate that summary into your own language.
 
 ★ WHAT IT DOES
 • Summarize the page you're reading in Short (3 sentences), Medium (5 bullets), or Detailed form.
-• Translate selected text — or the whole page — into English, Korean, Japanese, Chinese, Spanish, French, or German.
-• Right‑click any selected text to summarize or translate it instantly.
+• Or summarize just the text you select.
+• Translate the summary into English, Korean, Japanese, Chinese, Spanish, French, or German — then switch back to the original anytime.
+• Right-click any page or selection and choose "Summarize with Gist".
 • Results stream in live, word by word.
 
 ★ BRING YOUR OWN KEY
@@ -64,12 +65,13 @@ Gist is free. You only ever pay your AI provider for the tokens you use.
 ## 설명 (국문 버전 — 한국어 리스팅 추가 시 사용)
 
 ```
-Gist는 지금 보고 있는 웹페이지를 한 번의 클릭으로 읽기 쉬운 요약으로 바꿔주고, 선택한 텍스트를 원하는 언어로 번역해 줍니다. 챗봇에 복붙할 필요도, 새 탭을 열 필요도 없습니다.
+Gist는 지금 보고 있는 웹페이지를 한 번의 클릭으로 읽기 쉬운 요약으로 바꿔줍니다. 챗봇에 복붙할 필요도, 새 탭을 열 필요도 없습니다. 그리고 원하면 그 요약을 원하는 언어로 번역할 수 있습니다.
 
 ★ 주요 기능
 • 페이지 요약 — 짧게(3문장), 보통(불릿 5개), 자세히 중 선택
-• 번역 — 선택 영역 또는 전체를 영어·한국어·일본어·중국어·스페인어·프랑스어·독일어로
-• 우클릭 메뉴 — 선택한 텍스트를 바로 요약/번역
+• 선택한 텍스트만 요약하기
+• 요약문 번역 — 영어·한국어·일본어·중국어·스페인어·프랑스어·독일어로, 원문으로 되돌리기도 가능
+• 우클릭 메뉴 — 페이지나 선택 영역에서 "Gist로 요약하기"
 • 결과가 실시간으로 한 글자씩 표시
 
 ★ 본인 API 키 사용

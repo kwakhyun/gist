@@ -1,4 +1,4 @@
-// popup.js — UI 제어, 텍스트 추출 요청, 백그라운드 스트리밍 수신
+// popup.js — 요약 전용 UI + 요약문 번역 후속 기능
 
 const $ = (sel) => document.querySelector(sel);
 const t = (key, subs) => chrome.i18n.getMessage(key, subs);
@@ -9,22 +9,22 @@ const els = {
   noKeyBanner: $("#noKeyBanner"),
   openOptions: $("#openOptions"),
   settingsBtn: $("#settingsBtn"),
-  tabs: document.querySelectorAll(".tab"),
-  panels: document.querySelectorAll(".tab-panel"),
   summarizeBtn: $("#summarizeBtn"),
-  translateBtn: $("#translateBtn"),
   summaryLength: $("#summaryLength"),
   summarizeSelectionOnly: $("#summarizeSelectionOnly"),
-  targetLang: $("#targetLang"),
-  translateSelectionOnly: $("#translateSelectionOnly"),
   status: $("#status"),
   resultWrap: $("#resultWrap"),
   result: $("#result"),
   copyBtn: $("#copyBtn"),
   copied: $("#copied"),
+  tlang: $(".tlang"),
+  targetLang: $("#targetLang"),
+  translateBtn: $("#translateBtn"),
+  originalBtn: $("#originalBtn"),
 };
 
 let busy = false;
+let lastSummary = null; // 가장 최근 요약 결과(번역의 원본 / 원문 복원용)
 
 // ---- 초기화 ---------------------------------------------------------------
 
@@ -40,13 +40,12 @@ async function init() {
     openOptions();
   });
 
-  els.tabs.forEach((tab) =>
-    tab.addEventListener("click", () => switchTab(tab.dataset.tab))
-  );
-
   els.summarizeBtn.addEventListener("click", () => runSummarize());
-  els.translateBtn.addEventListener("click", () => runTranslate());
   els.copyBtn.addEventListener("click", copyResult);
+  els.translateBtn.addEventListener("click", () => runTranslate());
+  els.originalBtn.addEventListener("click", showOriginal);
+
+  showTranslateControls(false);
 
   // 컨텍스트 메뉴에서 넘어온 대기 요청 처리
   const { pendingRequest } = await chrome.storage.session.get("pendingRequest");
@@ -60,23 +59,9 @@ function openOptions() {
   chrome.runtime.openOptionsPage();
 }
 
-function switchTab(name) {
-  els.tabs.forEach((t) => t.classList.toggle("active", t.dataset.tab === name));
-  els.panels.forEach((p) =>
-    p.classList.toggle("active", p.dataset.panel === name)
-  );
-}
-
+// 컨텍스트 메뉴("Gist로 요약하기")에서 넘어온 요청
 async function handlePending(req) {
-  if (req.action === "translate") {
-    switchTab("translate");
-    stream({
-      action: "translate",
-      text: req.text,
-      targetLang: els.targetLang.value,
-    });
-  } else {
-    switchTab("summarize");
+  if (req.source === "selection" && req.text) {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     stream({
       action: "summarize",
@@ -84,12 +69,20 @@ async function handlePending(req) {
       title: tab?.title || "",
       length: els.summaryLength.value,
     });
+  } else {
+    // 페이지 전체 요약
+    await withExtraction("article", (data) =>
+      stream({
+        action: "summarize",
+        text: data.text,
+        title: data.title,
+        length: els.summaryLength.value,
+      })
+    );
   }
 }
 
-// ---- 텍스트 추출 ----------------------------------------------------------
-// 콘텐츠 스크립트를 상시 주입하지 않고, 버튼을 누른 순간에만 활성 탭에
-// 추출 함수를 실행한다(activeTab 권한 + 사용자 제스처).
+// ---- 텍스트 추출 (버튼 클릭 순간에만 현재 탭에서 실행) ----------------------
 
 async function extractFromPage(mode) {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -97,7 +90,6 @@ async function extractFromPage(mode) {
   if (/^(chrome|edge|about|chrome-extension|view-source):/i.test(tab.url || "")) {
     throw new Error(t("errInternalPage"));
   }
-
   let results;
   try {
     results = await chrome.scripting.executeScript({
@@ -111,8 +103,7 @@ async function extractFromPage(mode) {
   return results?.[0]?.result;
 }
 
-// 활성 탭 페이지 컨텍스트에서 실행되는 자기완결적 추출 함수.
-// (외부 변수를 참조하면 안 됨 — executeScript가 직렬화해 주입한다.)
+// 페이지 컨텍스트에서 실행되는 자기완결적 추출 함수
 function pageExtract(mode, maxChars) {
   const NOISE = "script,style,noscript,nav,header,footer,aside,form,svg,iframe,button";
 
@@ -120,7 +111,6 @@ function pageExtract(mode, maxChars) {
     const sel = window.getSelection();
     return sel ? sel.toString().trim() : "";
   }
-
   function articleText() {
     const candidates = Array.from(
       document.querySelectorAll(
@@ -157,7 +147,7 @@ function pageExtract(mode, maxChars) {
   };
 }
 
-// ---- 실행 ----------------------------------------------------------------
+// ---- 요약 실행 ------------------------------------------------------------
 
 async function runSummarize() {
   if (busy) return;
@@ -168,18 +158,6 @@ async function runSummarize() {
       text: data.text,
       title: data.title,
       length: els.summaryLength.value,
-    })
-  );
-}
-
-async function runTranslate() {
-  if (busy) return;
-  const mode = els.translateSelectionOnly.checked ? "selection" : "article";
-  await withExtraction(mode, (data) =>
-    stream({
-      action: "translate",
-      text: data.text,
-      targetLang: els.targetLang.value,
     })
   );
 }
@@ -198,6 +176,23 @@ async function withExtraction(mode, run) {
   }
 }
 
+// ---- 요약문 번역 ----------------------------------------------------------
+
+function runTranslate() {
+  if (busy || !lastSummary) return;
+  stream({
+    action: "translate",
+    text: lastSummary,
+    targetLang: els.targetLang.value,
+  });
+}
+
+function showOriginal() {
+  if (busy || lastSummary == null) return;
+  els.result.textContent = lastSummary;
+  els.originalBtn.classList.add("hidden");
+}
+
 // ---- 백그라운드 스트리밍 --------------------------------------------------
 
 function stream(request) {
@@ -207,6 +202,11 @@ function stream(request) {
   els.result.textContent = "";
   els.resultWrap.classList.remove("hidden");
   els.copied.classList.add("hidden");
+  if (request.action === "summarize") {
+    showTranslateControls(false);
+    lastSummary = null;
+  }
+  els.originalBtn.classList.add("hidden");
 
   const port = chrome.runtime.connect({ name: "ai-stream" });
   let received = false;
@@ -218,30 +218,49 @@ function stream(request) {
       els.result.textContent += msg.delta;
       els.result.scrollTop = els.result.scrollHeight;
     } else if (msg.type === "done") {
+      onDone(request, received);
       finish();
-      if (!received) setStatus(t("errEmptyResponse"), true);
     } else if (msg.type === "error") {
       setStatus(msg.message, true);
-      els.resultWrap.classList.toggle("hidden", !received);
+      els.resultWrap.classList.toggle("hidden", !received && !lastSummary);
       finish();
     }
   });
 
   port.onDisconnect.addListener(finish);
+  port.postMessage(request);
 
   function finish() {
     busy = false;
     toggleButtons(false);
   }
+}
 
-  port.postMessage(request);
+function onDone(request, received) {
+  if (!received) {
+    setStatus(t("errEmptyResponse"), true);
+    return;
+  }
+  if (request.action === "summarize") {
+    lastSummary = els.result.textContent;
+    showTranslateControls(true); // 요약 완료 → 번역 가능
+  } else if (request.action === "translate") {
+    els.originalBtn.classList.remove("hidden"); // 번역 완료 → 원문 복원 가능
+  }
 }
 
 // ---- UI 헬퍼 --------------------------------------------------------------
 
+function showTranslateControls(show) {
+  els.tlang.classList.toggle("hidden", !show);
+  els.translateBtn.classList.toggle("hidden", !show);
+  if (!show) els.originalBtn.classList.add("hidden");
+}
+
 function toggleButtons(disabled) {
   els.summarizeBtn.disabled = disabled;
   els.translateBtn.disabled = disabled;
+  els.originalBtn.disabled = disabled;
 }
 
 function setStatus(text, isError = false, spinner = false) {

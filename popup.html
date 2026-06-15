@@ -18,13 +18,8 @@
     <a href="#" id="openOptions" data-i18n="bannerLink">Add your key in settings</a>
   </div>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="summarize" data-i18n="tabSummarize">Summarize</button>
-    <button class="tab" data-tab="translate" data-i18n="tabTranslate">Translate</button>
-  </nav>
-
   <main>
-    <section class="tab-panel active" data-panel="summarize">
+    <section class="summarize">
       <div class="row">
         <label><span data-i18n="lengthLabel">Length</span>
           <select id="summaryLength">
@@ -41,12 +36,20 @@
       <button id="summarizeBtn" class="primary" data-i18n="summarizeBtn">Summarize this page</button>
     </section>
 
-    <section class="tab-panel" data-panel="translate">
-      <div class="row">
-        <label><span data-i18n="targetLangLabel">Translate to</span>
+    <div id="status" class="status hidden"></div>
+
+    <div id="resultWrap" class="result-wrap hidden">
+      <div id="result" class="result"></div>
+
+      <div class="result-actions">
+        <button id="copyBtn" class="ghost" data-i18n="copyBtn">Copy</button>
+        <span id="copied" class="copied hidden" data-i18n="copiedMsg">Copied!</span>
+        <span class="spacer"></span>
+        <label class="tlang">
+          <span data-i18n="translateLabel">Translate to</span>
           <select id="targetLang">
-            <option value="English" selected>English</option>
-            <option value="한국어">한국어</option>
+            <option value="English">English</option>
+            <option value="한국어" selected>한국어</option>
             <option value="日本語">日本語</option>
             <option value="中文">中文</option>
             <option value="Español">Español</option>
@@ -54,21 +57,8 @@
             <option value="Deutsch">Deutsch</option>
           </select>
         </label>
-        <label class="checkbox">
-          <input type="checkbox" id="translateSelectionOnly" checked />
-          <span data-i18n="selectionOnly">Selection only</span>
-        </label>
-      </div>
-      <button id="translateBtn" class="primary" data-i18n="translateBtn">Translate</button>
-    </section>
-
-    <div id="status" class="status hidden"></div>
-
-    <div id="resultWrap" class="result-wrap hidden">
-      <div id="result" class="result"></div>
-      <div class="result-actions">
-        <button id="copyBtn" class="ghost" data-i18n="copyBtn">Copy</button>
-        <span id="copied" class="copied hidden" data-i18n="copiedMsg">Copied!</span>
+        <button id="translateBtn" class="ghost" data-i18n="translateBtn">Translate</button>
+        <button id="originalBtn" class="ghost hidden" data-i18n="originalBtn">Original</button>
       </div>
     </div>
   </main>

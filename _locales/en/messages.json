@@ -1,10 +1,7 @@
 {
-  "appName": { "message": "Gist — Summarize & Translate" },
-  "appDesc": { "message": "Instantly summarize and translate any web page or selected text with AI, using your own API key." },
+  "appName": { "message": "Gist — AI Summarizer" },
+  "appDesc": { "message": "Summarize any web page or selected text with AI — then translate the summary into your language. Uses your own OpenAI or Anthropic API key." },
   "actionTitle": { "message": "Gist" },
-
-  "tabSummarize": { "message": "Summarize" },
-  "tabTranslate": { "message": "Translate" },
 
   "lengthLabel": { "message": "Length" },
   "lenShort": { "message": "Short (3 sentences)" },
@@ -13,18 +10,18 @@
   "selectionOnly": { "message": "Selection only" },
   "summarizeBtn": { "message": "Summarize this page" },
 
-  "targetLangLabel": { "message": "Translate to" },
-  "translateBtn": { "message": "Translate" },
-
   "copyBtn": { "message": "Copy" },
   "copiedMsg": { "message": "Copied!" },
   "settingsTitle": { "message": "Settings" },
 
+  "translateLabel": { "message": "Translate to" },
+  "translateBtn": { "message": "Translate" },
+  "originalBtn": { "message": "Original" },
+
   "bannerNoKey": { "message": "No API key set." },
   "bannerLink": { "message": "Add your key in settings" },
 
-  "ctxSummarize": { "message": "Summarize selection" },
-  "ctxTranslate": { "message": "Translate selection" },
+  "ctxSummarize": { "message": "Summarize with Gist" },
 
   "statusExtracting": { "message": "Reading text from the page…" },
   "statusWorking": { "message": "AI is working…" },

@@ -216,23 +216,22 @@ chrome.runtime.onConnect.addListener((port) => {
 // ---- 컨텍스트 메뉴 (우클릭으로 선택 영역 요약/번역) -------------------------
 
 chrome.runtime.onInstalled.addListener(() => {
+  // 페이지/선택 어디서 우클릭해도 "Gist로 요약하기" 단일 항목 노출
   chrome.contextMenus.create({
-    id: "summarize-selection",
+    id: "gist-summarize",
     title: t("ctxSummarize"),
-    contexts: ["selection"],
-  });
-  chrome.contextMenus.create({
-    id: "translate-selection",
-    title: t("ctxTranslate"),
-    contexts: ["selection"],
+    contexts: ["page", "selection"],
   });
 });
 
 chrome.contextMenus.onClicked.addListener((info) => {
   // 컨텍스트 메뉴는 팝업을 자동으로 열 수 없으므로,
-  // 선택 텍스트와 의도를 저장해 두고 팝업이 열릴 때 이어받게 한다.
-  const action = info.menuItemId === "translate-selection" ? "translate" : "summarize";
+  // 요청을 저장해 두고 팝업이 열릴 때 이어받게 한다.
+  // 선택 텍스트가 있으면 그 부분을, 없으면 페이지 전체를 요약한다.
+  const pending = info.selectionText
+    ? { source: "selection", text: info.selectionText }
+    : { source: "page" };
   chrome.storage.session
-    .set({ pendingRequest: { action, text: info.selectionText || "" } })
+    .set({ pendingRequest: pending })
     .then(() => chrome.action.openPopup().catch(() => {}));
 });
