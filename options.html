@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-title="optTitle">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gist — Settings</title>
+  <style>
+    :root {
+      --bg: #ffffff; --fg: #1f2328; --muted: #656d76;
+      --border: #d0d7de; --accent: #2563eb; --panel: #f6f8fa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--fg); background: var(--bg); max-width: 560px;
+      margin: 40px auto; padding: 0 20px; line-height: 1.5;
+    }
+    h1 { font-size: 20px; }
+    .field { margin-bottom: 20px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    .hint { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .hint a { color: var(--accent); }
+    input, select {
+      width: 100%; padding: 9px 10px; border: 1px solid var(--border);
+      border-radius: 8px; font-size: 14px; background: var(--bg); color: var(--fg);
+    }
+    .row { display: flex; gap: 6px; }
+    .row input { flex: 1; }
+    button {
+      padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--panel); cursor: pointer; font-size: 14px;
+    }
+    button.primary { background: var(--accent); color: #fff; border: none; font-weight: 600; }
+    .save-row { display: flex; align-items: center; gap: 12px; }
+    .saved { color: #16a34a; font-size: 14px; }
+    .hidden { display: none; }
+    fieldset { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    .provider-block { margin-top: 10px; }
+    .custom-model { margin-top: 8px; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --border:#3d444d; --accent:#4493f8; --panel:#161b22; }
+    }
+  </style>
+</head>
+<body>
+  <h1 data-i18n="optHeading">Gist — Settings</h1>
+
+  <div class="field">
+    <label for="provider" data-i18n="providerLabel">AI provider</label>
+    <select id="provider">
+      <option value="openai">OpenAI (GPT)</option>
+      <option value="anthropic">Anthropic (Claude)</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="apiKey" data-i18n="apiKeyLabel">API key</label>
+    <div class="row">
+      <input type="password" id="apiKey" placeholder="sk-... / sk-ant-..." autocomplete="off" />
+      <button type="button" id="toggleKey" data-i18n="showKey">Show</button>
+    </div>
+    <p class="hint" id="keyHint"></p>
+  </div>
+
+  <div class="field provider-block" data-provider="openai">
+    <label for="openaiModel" data-i18n="openaiModelLabel">OpenAI model</label>
+    <select id="openaiModel">
+      <option value="gpt-5.4-mini">gpt-5.4-mini (fast &amp; cheap, recommended)</option>
+      <option value="gpt-5.4-nano">gpt-5.4-nano (lowest cost)</option>
+      <option value="gpt-5.4">gpt-5.4 (high quality)</option>
+      <option value="gpt-5.5">gpt-5.5 (most advanced)</option>
+      <option value="gpt-5.5-pro">gpt-5.5-pro (most precise)</option>
+      <option value="gpt-5-chat-latest">gpt-5-chat-latest (ChatGPT latest)</option>
+    </select>
+    <input type="text" id="openaiModelCustom" class="custom-model"
+      data-i18n-ph="customModelPh" placeholder="Custom model ID (optional)" autocomplete="off" />
+  </div>
+
+  <div class="field provider-block" data-provider="anthropic">
+    <label for="anthropicModel" data-i18n="anthropicModelLabel">Anthropic model</label>
+    <select id="anthropicModel">
+      <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (fast &amp; cheap, recommended)</option>
+      <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (high quality)</option>
+      <option value="claude-opus-4-8">Claude Opus 4.8 (most capable)</option>
+    </select>
+    <input type="text" id="anthropicModelCustom" class="custom-model"
+      data-i18n-ph="customModelPh" placeholder="Custom model ID (optional)" autocomplete="off" />
+  </div>
+
+  <div class="save-row">
+    <button class="primary" id="saveBtn" data-i18n="saveBtn">Save</button>
+    <span class="saved hidden" id="saved" data-i18n="savedMsg">Saved ✓</span>
+  </div>
+
+  <p class="hint" style="margin-top:28px" data-i18n="privacyNote">
+    🔒 Your API key is stored only in this browser and is never sent to us.
+  </p>
+
+  <script src="i18n.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

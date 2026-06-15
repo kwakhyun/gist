@@ -1,0 +1,83 @@
+{
+  "appName": { "message": "Gist — Summarize & Translate" },
+  "appDesc": { "message": "Instantly summarize and translate any web page or selected text with AI, using your own API key." },
+  "actionTitle": { "message": "Gist" },
+
+  "tabSummarize": { "message": "Summarize" },
+  "tabTranslate": { "message": "Translate" },
+
+  "lengthLabel": { "message": "Length" },
+  "lenShort": { "message": "Short (3 sentences)" },
+  "lenMedium": { "message": "Medium (5 bullets)" },
+  "lenLong": { "message": "Detailed" },
+  "selectionOnly": { "message": "Selection only" },
+  "summarizeBtn": { "message": "Summarize this page" },
+
+  "targetLangLabel": { "message": "Translate to" },
+  "translateBtn": { "message": "Translate" },
+
+  "copyBtn": { "message": "Copy" },
+  "copiedMsg": { "message": "Copied!" },
+  "settingsTitle": { "message": "Settings" },
+
+  "bannerNoKey": { "message": "No API key set." },
+  "bannerLink": { "message": "Add your key in settings" },
+
+  "ctxSummarize": { "message": "Summarize selection" },
+  "ctxTranslate": { "message": "Translate selection" },
+
+  "statusExtracting": { "message": "Reading text from the page…" },
+  "statusWorking": { "message": "AI is working…" },
+
+  "errNoTab": { "message": "No active tab found." },
+  "errInternalPage": { "message": "Can't be used on this page (browser-internal page)." },
+  "errNoAccess": {
+    "message": "Can't access this page's content: $detail$",
+    "placeholders": { "detail": { "content": "$1" } }
+  },
+  "errNoSelection": { "message": "No text selected. Drag to select text, or turn off 'Selection only'." },
+  "errNoExtract": { "message": "Couldn't extract any text from the page." },
+  "errEmptyResponse": { "message": "The response was empty." },
+
+  "errNoKey": { "message": "API key is not set. Add your key in Settings." },
+  "errAuth": {
+    "message": "$provider$ authentication failed. Check your API key.",
+    "placeholders": { "provider": { "content": "$1" } }
+  },
+  "errRate": {
+    "message": "$provider$ rate limit exceeded (429). Try again shortly.",
+    "placeholders": { "provider": { "content": "$1" } }
+  },
+  "errGeneric": {
+    "message": "$provider$ error ($code$): $detail$",
+    "placeholders": {
+      "provider": { "content": "$1" },
+      "code": { "content": "$2" },
+      "detail": { "content": "$3" }
+    }
+  },
+  "errUnknown": { "message": "Unknown error" },
+  "errAnthropicStream": {
+    "message": "Anthropic error: $detail$",
+    "placeholders": { "detail": { "content": "$1" } }
+  },
+
+  "optTitle": { "message": "Gist — Settings" },
+  "optHeading": { "message": "Gist — Settings" },
+  "providerLabel": { "message": "AI provider" },
+  "apiKeyLabel": { "message": "API key" },
+  "showKey": { "message": "Show" },
+  "hideKey": { "message": "Hide" },
+  "keyHintOpenAI": {
+    "message": "Create an OpenAI API key (sk-...) at <a href=\"https://platform.openai.com/api-keys\" target=\"_blank\" rel=\"noreferrer\">platform.openai.com/api-keys</a>."
+  },
+  "keyHintAnthropic": {
+    "message": "Create an Anthropic API key (sk-ant-...) at <a href=\"https://console.anthropic.com/settings/keys\" target=\"_blank\" rel=\"noreferrer\">console.anthropic.com</a>."
+  },
+  "openaiModelLabel": { "message": "OpenAI model" },
+  "anthropicModelLabel": { "message": "Anthropic model" },
+  "customModelPh": { "message": "Custom model ID (optional) — overrides the selection above" },
+  "saveBtn": { "message": "Save" },
+  "savedMsg": { "message": "Saved ✓" },
+  "privacyNote": { "message": "🔒 Your API key is stored only in this browser's sync storage and is never sent to us. AI requests go directly from your browser to OpenAI/Anthropic with your key." }
+}

@@ -1,0 +1,41 @@
+# Gist — Summarize & Translate
+
+현재 보고 있는 웹페이지나 드래그로 선택한 텍스트를 AI로 **즉시 요약**하고 **원하는 언어로 번역**하는 크롬 확장 프로그램입니다.
+서버 없이 **사용자 본인의 API 키**로 동작하며, 키는 브라우저 저장소에만 보관됩니다.
+UI는 **영어 기본 + 한국어**(Chrome i18n)로, 브라우저 언어에 따라 자동 전환됩니다.
+
+## 주요 기능
+
+- 📄 **페이지 요약** — 본문을 자동 추출해 짧게/보통(불릿)/자세히 중 선택해 요약
+- 🌐 **번역** — 선택 영역 또는 전체를 7개 언어로 번역
+- 🖱 **우클릭 메뉴** — 텍스트 선택 후 우클릭 → "선택 영역 요약/번역하기"
+- ⚡ **실시간 스트리밍** — 결과가 생성되는 대로 표시
+- 🔌 **OpenAI · Anthropic 모두 지원** — 제공자와 모델 선택 가능
+- 🔒 **프라이버시** — 별도 서버 없음. 사용자 키로 AI 제공자에 직접 요청
+
+## 기술 구성
+
+- Manifest V3, 빌드 단계 없는 순수 JavaScript (프레임워크 없음)
+- `background.js`: 서비스 워커. 포트 기반 스트리밍으로 OpenAI/Anthropic SSE 응답 중계
+- `popup.*`: 요약/번역 UI. 버튼 클릭 시 `chrome.scripting`으로 현재 탭에만 추출 함수를 실행 (가독성 휴리스틱, 최대 12,000자) — 상시 콘텐츠 스크립트 없음
+- `options.*`: 제공자·API 키·모델 설정 (`chrome.storage.sync`)
+- `_locales/` + `i18n.js`: Chrome i18n. `default_locale: en`, 한국어(`ko`) 포함. `data-i18n` 속성을 메시지로 치환
+
+## 로컬에서 테스트하기 (개발자 모드)
+
+1. Chrome 주소창에 `chrome://extensions` 입력
+2. 우측 상단 **개발자 모드** 켜기
+3. **압축해제된 확장 프로그램을 로드합니다** 클릭 → 이 폴더 선택
+4. 툴바의 확장 아이콘 → ⚙(설정)에서 **제공자 선택 + API 키 입력 후 저장**
+5. 아무 기사 페이지에서 아이콘 클릭 → "이 페이지 요약하기"
+
+## API 키 발급
+
+- OpenAI: https://platform.openai.com/api-keys (`sk-...`)
+- Anthropic: https://console.anthropic.com/settings/keys (`sk-ant-...`)
+
+비용은 사용자 API 계정에 청구되며, 기본 모델(gpt-4o-mini / Claude Haiku 4.5)은 요약·번역에 매우 저렴합니다.
+
+## 크롬 웹 스토어 배포
+
+자세한 절차는 [DEPLOY.md](DEPLOY.md)를 참고하세요.

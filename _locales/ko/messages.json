@@ -1,0 +1,83 @@
+{
+  "appName": { "message": "Gist — 요약·번역" },
+  "appDesc": { "message": "본인의 API 키로 모든 웹페이지나 선택한 텍스트를 AI로 즉시 요약하고 번역합니다." },
+  "actionTitle": { "message": "Gist" },
+
+  "tabSummarize": { "message": "요약" },
+  "tabTranslate": { "message": "번역" },
+
+  "lengthLabel": { "message": "분량" },
+  "lenShort": { "message": "짧게 (3문장)" },
+  "lenMedium": { "message": "보통 (불릿 5개)" },
+  "lenLong": { "message": "자세히" },
+  "selectionOnly": { "message": "선택 영역만" },
+  "summarizeBtn": { "message": "이 페이지 요약하기" },
+
+  "targetLangLabel": { "message": "번역 언어" },
+  "translateBtn": { "message": "번역하기" },
+
+  "copyBtn": { "message": "복사" },
+  "copiedMsg": { "message": "복사됨!" },
+  "settingsTitle": { "message": "설정" },
+
+  "bannerNoKey": { "message": "API 키가 설정되지 않았습니다." },
+  "bannerLink": { "message": "설정에서 키 입력하기" },
+
+  "ctxSummarize": { "message": "선택 영역 요약하기" },
+  "ctxTranslate": { "message": "선택 영역 번역하기" },
+
+  "statusExtracting": { "message": "페이지에서 텍스트를 가져오는 중…" },
+  "statusWorking": { "message": "AI가 작업 중입니다…" },
+
+  "errNoTab": { "message": "활성 탭을 찾을 수 없습니다." },
+  "errInternalPage": { "message": "이 페이지에서는 사용할 수 없습니다 (브라우저 내부 페이지)." },
+  "errNoAccess": {
+    "message": "이 페이지의 콘텐츠에 접근할 수 없습니다: $detail$",
+    "placeholders": { "detail": { "content": "$1" } }
+  },
+  "errNoSelection": { "message": "선택된 텍스트가 없습니다. 텍스트를 드래그하거나 '선택 영역만'을 해제하세요." },
+  "errNoExtract": { "message": "페이지에서 텍스트를 추출하지 못했습니다." },
+  "errEmptyResponse": { "message": "응답이 비어 있습니다." },
+
+  "errNoKey": { "message": "API 키가 설정되어 있지 않습니다. 설정에서 키를 입력하세요." },
+  "errAuth": {
+    "message": "$provider$ 인증 실패: API 키를 확인하세요.",
+    "placeholders": { "provider": { "content": "$1" } }
+  },
+  "errRate": {
+    "message": "$provider$ 요청 한도 초과(429): 잠시 후 다시 시도하세요.",
+    "placeholders": { "provider": { "content": "$1" } }
+  },
+  "errGeneric": {
+    "message": "$provider$ 오류 ($code$): $detail$",
+    "placeholders": {
+      "provider": { "content": "$1" },
+      "code": { "content": "$2" },
+      "detail": { "content": "$3" }
+    }
+  },
+  "errUnknown": { "message": "알 수 없는 오류" },
+  "errAnthropicStream": {
+    "message": "Anthropic 오류: $detail$",
+    "placeholders": { "detail": { "content": "$1" } }
+  },
+
+  "optTitle": { "message": "Gist — 설정" },
+  "optHeading": { "message": "Gist — 설정" },
+  "providerLabel": { "message": "AI 제공자" },
+  "apiKeyLabel": { "message": "API 키" },
+  "showKey": { "message": "보기" },
+  "hideKey": { "message": "숨기기" },
+  "keyHintOpenAI": {
+    "message": "OpenAI API 키(sk-...)는 <a href=\"https://platform.openai.com/api-keys\" target=\"_blank\" rel=\"noreferrer\">platform.openai.com/api-keys</a> 에서 발급합니다."
+  },
+  "keyHintAnthropic": {
+    "message": "Anthropic API 키(sk-ant-...)는 <a href=\"https://console.anthropic.com/settings/keys\" target=\"_blank\" rel=\"noreferrer\">console.anthropic.com</a> 에서 발급합니다."
+  },
+  "openaiModelLabel": { "message": "OpenAI 모델" },
+  "anthropicModelLabel": { "message": "Anthropic 모델" },
+  "customModelPh": { "message": "모델 ID 직접 입력 (선택) — 입력 시 위 선택보다 우선" },
+  "saveBtn": { "message": "저장" },
+  "savedMsg": { "message": "저장되었습니다 ✓" },
+  "privacyNote": { "message": "🔒 API 키는 이 브라우저의 동기화 저장소에만 보관되며 외부로 전송되지 않습니다. AI 호출은 사용자의 키로 OpenAI/Anthropic 서버에 직접 요청합니다." }
+}

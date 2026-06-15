@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gist — Privacy Policy</title>
+  <style>
+    :root { --fg:#1f2328; --muted:#57606a; --border:#d0d7de; --accent:#5850EC; --bg:#ffffff; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--fg); background: var(--bg); line-height: 1.65;
+      max-width: 760px; margin: 0 auto; padding: 48px 24px 80px;
+    }
+    .brand {
+      display: inline-block; font-weight: 700; font-size: 20px; color: #fff;
+      background: linear-gradient(135deg, #5850EC, #C026D3);
+      padding: 6px 14px; border-radius: 10px; margin-bottom: 24px;
+    }
+    h1 { font-size: 28px; margin: 0 0 6px; }
+    .updated { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+    h2 { font-size: 19px; margin-top: 34px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    a { color: var(--accent); }
+    code { background: #f6f8fa; padding: 1px 6px; border-radius: 5px; font-size: 90%; }
+    .lang { color: var(--muted); font-size: 13px; margin-top: 56px; border-top: 1px solid var(--border); padding-top: 16px; }
+    @media (prefers-color-scheme: dark) {
+      :root { --fg:#e6edf3; --muted:#9198a1; --border:#30363d; --accent:#a9a3ff; --bg:#0d1117; }
+      code { background: #161b22; }
+    }
+  </style>
+</head>
+<body>
+  <span class="brand">Gist</span>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: June 15, 2026</p>
+
+  <p>
+    <strong>Gist — Summarize &amp; Translate</strong> ("the extension") is a browser extension that
+    summarizes and translates web page content using AI. This policy explains exactly what the
+    extension does and does not do with your data.
+  </p>
+
+  <h2>No server, no data collection</h2>
+  <p>
+    The developer operates <strong>no server</strong> and collects <strong>no personal data</strong>.
+    The extension has no analytics, no tracking, and no advertising. We never see your API key,
+    your settings, the pages you visit, or the text you summarize or translate.
+  </p>
+
+  <h2>Your API key and settings</h2>
+  <p>
+    The extension uses <em>your own</em> OpenAI or Anthropic API key. Your API key and preferences
+    (provider and model) are stored only in your browser via <code>chrome.storage</code> and are
+    <strong>never transmitted to the developer</strong>. They remain on your device(s) and can be
+    removed at any time by clearing the extension's settings or uninstalling it.
+  </p>
+
+  <h2>What happens to page text</h2>
+  <p>
+    When — and only when — you click "Summarize" or "Translate" (or use the right-click menu),
+    the extension reads the text of the current page or your selected text and sends it
+    <strong>directly from your browser</strong> to the AI provider you chose (OpenAI or Anthropic),
+    authenticated with your own API key. This is required to generate the summary or translation.
+  </p>
+  <p>
+    That text is processed by the AI provider under <em>their</em> privacy policy and terms:
+  </p>
+  <ul>
+    <li><a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noreferrer">OpenAI Privacy Policy</a></li>
+    <li><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noreferrer">Anthropic Privacy Policy</a></li>
+  </ul>
+  <p>
+    The extension only contacts <code>api.openai.com</code> and <code>api.anthropic.com</code>.
+    It contacts no other servers.
+  </p>
+
+  <h2>Permissions</h2>
+  <ul>
+    <li><strong>activeTab / scripting</strong> — read the current tab's text only at the moment you click, to summarize or translate it.</li>
+    <li><strong>storage</strong> — save your API key and settings in your browser.</li>
+    <li><strong>contextMenus</strong> — provide the right-click "Summarize / Translate selection" items.</li>
+    <li><strong>host access to api.openai.com and api.anthropic.com</strong> — send your text to the AI provider using your key.</li>
+  </ul>
+
+  <h2>Data sharing</h2>
+  <p>
+    We do not sell, rent, or share any user data with anyone. The only transmission of your text
+    is the request you trigger, sent directly from your browser to your chosen AI provider.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy? Contact: <a href="mailto:dev@rootup.co.kr">dev@rootup.co.kr</a>
+  </p>
+
+  <p class="lang">
+    개인정보 처리방침 (요약): Gist는 별도의 서버를 운영하지 않으며 어떠한 개인정보도 수집하지 않습니다.
+    API 키와 설정은 사용자의 브라우저(chrome.storage)에만 저장되고 개발자에게 전송되지 않습니다.
+    요약·번역을 위해 사용자가 버튼을 누른 순간에 한해, 현재 페이지 또는 선택한 텍스트가 브라우저에서
+    사용자가 선택한 AI 제공자(OpenAI 또는 Anthropic)로 사용자 본인의 키와 함께 직접 전송되며,
+    각 제공자의 개인정보 처리방침이 적용됩니다. 그 외 어떤 서버와도 통신하지 않습니다.
+  </p>
+</body>
+</html>
