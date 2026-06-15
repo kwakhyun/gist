@@ -6,7 +6,7 @@ const DEFAULTS = {
   provider: "openai",
   openaiModel: "gpt-5.4-mini",
   anthropicModel: "claude-haiku-4-5-20251001",
-  geminiModel: "gemini-2.5-flash",
+  geminiModel: "gemini-3.5-flash",
 };
 
 async function getConfig() {
