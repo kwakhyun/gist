@@ -17,9 +17,9 @@
 Gist — AI Summarizer
 ```
 
-## 패키지 요약 / 짧은 설명 (132자 이내)
+## 패키지 요약 / 짧은 설명 (132자 이내, manifest에서 자동 — 폼에서 수정 불가)
 ```
-Summarize any web page or selection with AI — then translate the summary into your language. Uses your own API key.
+Summarize any web page or selection with AI, then translate the summary into your language. Uses your own API key.
 ```
 
 ---

@@ -1,6 +1,6 @@
 {
   "appName": { "message": "Gist — AI Summarizer" },
-  "appDesc": { "message": "Summarize any web page or selected text with AI — then translate the summary into your language. Uses your own OpenAI or Anthropic API key." },
+  "appDesc": { "message": "Summarize any web page or selection with AI, then translate the summary into your language. Uses your own API key." },
   "actionTitle": { "message": "Gist" },
 
   "lengthLabel": { "message": "Length" },
