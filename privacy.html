@@ -49,7 +49,7 @@
 
   <h2>Your API key and settings</h2>
   <p>
-    The extension uses <em>your own</em> OpenAI or Anthropic API key. Your API key and preferences
+    The extension uses <em>your own</em> OpenAI, Anthropic, or Google Gemini API key. Your API key and preferences
     (provider and model) are stored only in your browser via <code>chrome.storage</code> and are
     <strong>never transmitted to the developer</strong>. They remain on your device(s) and can be
     removed at any time by clearing the extension's settings or uninstalling it.
@@ -59,9 +59,9 @@
   <p>
     When — and only when — you click "Summarize" (or choose "Summarize with Gist" from the
     right-click menu), the extension reads the text of the current page or your selected text and
-    sends it <strong>directly from your browser</strong> to the AI provider you chose (OpenAI or
-    Anthropic), authenticated with your own API key, to generate the summary. If you then choose to
-    translate that summary, the summary text is sent to the same provider in the same way.
+    sends it <strong>directly from your browser</strong> to the AI provider you chose (OpenAI,
+    Anthropic, or Google Gemini), authenticated with your own API key, to generate the summary. If you
+    then choose to translate that summary, the summary text is sent to the same provider in the same way.
   </p>
   <p>
     That text is processed by the AI provider under <em>their</em> privacy policy and terms:
@@ -69,10 +69,11 @@
   <ul>
     <li><a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noreferrer">OpenAI Privacy Policy</a></li>
     <li><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noreferrer">Anthropic Privacy Policy</a></li>
+    <li><a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google Privacy Policy</a></li>
   </ul>
   <p>
-    The extension only contacts <code>api.openai.com</code> and <code>api.anthropic.com</code>.
-    It contacts no other servers.
+    The extension only contacts <code>api.openai.com</code>, <code>api.anthropic.com</code>, and
+    <code>generativelanguage.googleapis.com</code>. It contacts no other servers.
   </p>
 
   <h2>Permissions</h2>
@@ -80,7 +81,7 @@
     <li><strong>activeTab / scripting</strong> — read the current tab's text only at the moment you click, to summarize or translate it.</li>
     <li><strong>storage</strong> — save your API key and settings in your browser.</li>
     <li><strong>contextMenus</strong> — provide the right-click "Summarize / Translate selection" items.</li>
-    <li><strong>host access to api.openai.com and api.anthropic.com</strong> — send your text to the AI provider using your key.</li>
+    <li><strong>host access to api.openai.com, api.anthropic.com, and generativelanguage.googleapis.com</strong> — send your text to the AI provider using your key.</li>
   </ul>
 
   <h2>Data sharing</h2>
@@ -98,7 +99,7 @@
     개인정보 처리방침 (요약): Gist는 별도의 서버를 운영하지 않으며 어떠한 개인정보도 수집하지 않습니다.
     API 키와 설정은 사용자의 브라우저(chrome.storage)에만 저장되고 개발자에게 전송되지 않습니다.
     요약·번역을 위해 사용자가 버튼을 누른 순간에 한해, 현재 페이지 또는 선택한 텍스트가 브라우저에서
-    사용자가 선택한 AI 제공자(OpenAI 또는 Anthropic)로 사용자 본인의 키와 함께 직접 전송되며,
+    사용자가 선택한 AI 제공자(OpenAI · Anthropic · Google Gemini)로 사용자 본인의 키와 함께 직접 전송되며,
     각 제공자의 개인정보 처리방침이 적용됩니다. 그 외 어떤 서버와도 통신하지 않습니다.
   </p>
 </body>

@@ -26,6 +26,7 @@
   "permissions": ["activeTab", "scripting", "storage", "contextMenus"],
   "host_permissions": [
     "https://api.openai.com/*",
-    "https://api.anthropic.com/*"
+    "https://api.anthropic.com/*",
+    "https://generativelanguage.googleapis.com/*"
   ]
 }

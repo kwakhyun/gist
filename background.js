@@ -1,11 +1,12 @@
 // background.js — 서비스 워커
-// 팝업/컨텍스트 메뉴로부터 요청을 받아 OpenAI 또는 Anthropic API를 스트리밍 호출한다.
+// 팝업/컨텍스트 메뉴로부터 요청을 받아 OpenAI · Anthropic · Google Gemini API를 스트리밍 호출한다.
 // API 키는 chrome.storage.sync 에 저장된 사용자 본인의 키만 사용한다.
 
 const DEFAULTS = {
   provider: "openai",
   openaiModel: "gpt-5.4-mini",
   anthropicModel: "claude-haiku-4-5-20251001",
+  geminiModel: "gemini-2.5-flash",
 };
 
 async function getConfig() {
@@ -14,13 +15,16 @@ async function getConfig() {
     "apiKey",
     "openaiModel",
     "anthropicModel",
+    "geminiModel",
     "openaiModelCustom",
     "anthropicModelCustom",
+    "geminiModelCustom",
   ]);
   const cfg = { ...DEFAULTS, ...stored };
   // 사용자가 직접 입력한 모델 ID가 있으면 드롭다운 선택보다 우선
   cfg.openaiModel = (cfg.openaiModelCustom || "").trim() || cfg.openaiModel;
   cfg.anthropicModel = (cfg.anthropicModelCustom || "").trim() || cfg.anthropicModel;
+  cfg.geminiModel = (cfg.geminiModelCustom || "").trim() || cfg.geminiModel;
   return cfg;
 }
 
@@ -129,6 +133,45 @@ async function* streamAnthropic({ apiKey, model, system, user, signal }) {
   }
 }
 
+async function* streamGemini({ apiKey, model, system, user, signal }) {
+  const url =
+    "https://generativelanguage.googleapis.com/v1beta/models/" +
+    encodeURIComponent(model) +
+    ":streamGenerateContent?alt=sse";
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": apiKey,
+    },
+    signal,
+    body: JSON.stringify({
+      system_instruction: { parts: [{ text: system }] },
+      contents: [{ role: "user", parts: [{ text: user }] }],
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error(await readError(res, "Gemini"));
+  }
+
+  for await (const data of readSSE(res)) {
+    let json;
+    try {
+      json = JSON.parse(data);
+    } catch {
+      continue; // 부분 라인 무시
+    }
+    if (json.error) {
+      throw new Error(`Gemini: ${json.error.message || "stream error"}`);
+    }
+    const parts = json.candidates?.[0]?.content?.parts;
+    if (parts) {
+      for (const p of parts) if (p.text) yield p.text;
+    }
+  }
+}
+
 // SSE 응답을 라인 단위로 파싱해 data 페이로드를 순차 반환
 async function* readSSE(res) {
   const reader = res.body.getReader();
@@ -168,7 +211,7 @@ async function readError(res, label) {
   } catch {
     detail = await res.text().catch(() => "");
   }
-  if (res.status === 401) return t("errAuth", label);
+  if (res.status === 401 || res.status === 403) return t("errAuth", label);
   if (res.status === 429) return t("errRate", label);
   return t("errGeneric", [label, String(res.status), detail || t("errUnknown")]);
 }
@@ -197,10 +240,14 @@ chrome.runtime.onConnect.addListener((port) => {
         signal: controller.signal,
       };
 
-      const stream =
-        cfg.provider === "anthropic"
-          ? streamAnthropic({ ...common, model: cfg.anthropicModel })
-          : streamOpenAI({ ...common, model: cfg.openaiModel });
+      let stream;
+      if (cfg.provider === "anthropic") {
+        stream = streamAnthropic({ ...common, model: cfg.anthropicModel });
+      } else if (cfg.provider === "gemini") {
+        stream = streamGemini({ ...common, model: cfg.geminiModel });
+      } else {
+        stream = streamOpenAI({ ...common, model: cfg.openaiModel });
+      }
 
       for await (const delta of stream) {
         port.postMessage({ type: "chunk", delta });

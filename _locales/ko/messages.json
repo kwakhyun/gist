@@ -1,6 +1,6 @@
 {
   "appName": { "message": "Gist — AI 요약" },
-  "appDesc": { "message": "웹페이지나 선택한 텍스트를 AI로 요약하고, 요약 결과를 원하는 언어로 번역합니다. 본인의 OpenAI 또는 Anthropic API 키를 사용합니다." },
+  "appDesc": { "message": "웹페이지나 선택한 텍스트를 AI로 요약하고, 요약 결과를 원하는 언어로 번역합니다. 본인의 OpenAI·Anthropic·Google API 키를 사용합니다." },
   "actionTitle": { "message": "Gist" },
 
   "lengthLabel": { "message": "분량" },
@@ -71,8 +71,12 @@
   "keyHintAnthropic": {
     "message": "Anthropic API 키(sk-ant-...)는 <a href=\"https://console.anthropic.com/settings/keys\" target=\"_blank\" rel=\"noreferrer\">console.anthropic.com</a> 에서 발급합니다."
   },
+  "keyHintGemini": {
+    "message": "Google Gemini API 키(AIza...)는 <a href=\"https://aistudio.google.com/apikey\" target=\"_blank\" rel=\"noreferrer\">aistudio.google.com/apikey</a> 에서 발급합니다."
+  },
   "openaiModelLabel": { "message": "OpenAI 모델" },
   "anthropicModelLabel": { "message": "Anthropic 모델" },
+  "geminiModelLabel": { "message": "Gemini 모델" },
   "customModelPh": { "message": "모델 ID 직접 입력 (선택) — 입력 시 위 선택보다 우선" },
   "saveBtn": { "message": "저장" },
   "savedMsg": { "message": "저장되었습니다 ✓" },

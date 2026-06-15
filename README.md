@@ -6,13 +6,13 @@
 
 <p align="center">
   <b>웹페이지를 한 번의 클릭으로 요약하고, 그 요약을 원하는 언어로 번역하는 크롬 확장 프로그램</b><br/>
-  서버 없이 <b>사용자 본인의 OpenAI · Anthropic API 키</b>로 동작합니다.
+  서버 없이 <b>사용자 본인의 OpenAI · Anthropic · Google Gemini API 키</b>로 동작합니다.
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Manifest-V3-5850EC?style=flat-square" alt="Manifest V3" />
   <img src="https://img.shields.io/badge/JavaScript-vanilla-C026D3?style=flat-square" alt="Vanilla JS" />
-  <img src="https://img.shields.io/badge/AI-OpenAI%20%C2%B7%20Anthropic-589bff?style=flat-square" alt="OpenAI · Anthropic" />
+  <img src="https://img.shields.io/badge/AI-OpenAI%20%C2%B7%20Anthropic%20%C2%B7%20Gemini-589bff?style=flat-square" alt="OpenAI · Anthropic · Gemini" />
   <img src="https://img.shields.io/badge/i18n-EN%20%C2%B7%20KO-16a34a?style=flat-square" alt="i18n EN · KO" />
   <img src="https://img.shields.io/badge/privacy-no%20server-1f2328?style=flat-square" alt="No server" />
 </p>
@@ -45,7 +45,7 @@
     <td width="50%" align="center">
       <img src="store/screenshot-3.png" alt="본인 API 키 사용" /><br/>
       <b>🔌 본인 API 키 사용</b><br/>
-      <sub>구독·마진 없음 · GPT-5.x / Claude 모델 선택</sub>
+      <sub>구독·마진 없음 · GPT-5.x / Claude / Gemini 선택</sub>
     </td>
   </tr>
 </table>
@@ -64,7 +64,7 @@
 - 🌐 **요약문 번역** — 완성된 요약을 영어·한국어·일본어·중국어·스페인어·프랑스어·독일어로 번역, **원문 복원** 가능
 - 🖱 **우클릭 메뉴** — 페이지나 선택 영역에서 `Gist로 요약하기` 한 항목
 - ⚡ **실시간 스트리밍** — 결과가 생성되는 대로 한 글자씩 표시
-- 🔌 **OpenAI · Anthropic 모두 지원** — 제공자·모델 선택 + 모델 ID 직접 입력
+- 🔌 **OpenAI · Anthropic · Google Gemini 지원** — 제공자·모델 선택 + 모델 ID 직접 입력
 - 🌍 **다국어 UI** — 영어 기본 + 한국어(Chrome i18n), 브라우저 언어에 따라 자동 전환
 - 🔒 **프라이버시** — 별도 서버 없음, 사용자 키로 AI 제공자에 직접 요청
 
@@ -88,6 +88,7 @@ git clone https://github.com/kwakhyun/gist.git
 |--------|-----------|---------|
 | **OpenAI** | https://platform.openai.com/api-keys | `sk-...` |
 | **Anthropic** | https://console.anthropic.com/settings/keys | `sk-ant-...` |
+| **Google Gemini** | https://aistudio.google.com/apikey | `AIza...` |
 
 > 비용은 사용자 API 계정에 직접 청구되며, 기본 모델(`gpt-5.4-mini` / `Claude Haiku 4.5`)은 요약·번역에 매우 저렴합니다.
 

@@ -71,8 +71,12 @@
   "keyHintAnthropic": {
     "message": "Create an Anthropic API key (sk-ant-...) at <a href=\"https://console.anthropic.com/settings/keys\" target=\"_blank\" rel=\"noreferrer\">console.anthropic.com</a>."
   },
+  "keyHintGemini": {
+    "message": "Create a Google Gemini API key (AIza...) at <a href=\"https://aistudio.google.com/apikey\" target=\"_blank\" rel=\"noreferrer\">aistudio.google.com/apikey</a>."
+  },
   "openaiModelLabel": { "message": "OpenAI model" },
   "anthropicModelLabel": { "message": "Anthropic model" },
+  "geminiModelLabel": { "message": "Gemini model" },
   "customModelPh": { "message": "Custom model ID (optional) — overrides the selection above" },
   "saveBtn": { "message": "Save" },
   "savedMsg": { "message": "Saved ✓" },

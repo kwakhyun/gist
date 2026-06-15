@@ -49,13 +49,14 @@
     <select id="provider">
       <option value="openai">OpenAI (GPT)</option>
       <option value="anthropic">Anthropic (Claude)</option>
+      <option value="gemini">Google (Gemini)</option>
     </select>
   </div>
 
   <div class="field">
     <label for="apiKey" data-i18n="apiKeyLabel">API key</label>
     <div class="row">
-      <input type="password" id="apiKey" placeholder="sk-... / sk-ant-..." autocomplete="off" />
+      <input type="password" id="apiKey" placeholder="sk-... / sk-ant-... / AIza..." autocomplete="off" />
       <button type="button" id="toggleKey" data-i18n="showKey">Show</button>
     </div>
     <p class="hint" id="keyHint"></p>
@@ -83,6 +84,18 @@
       <option value="claude-opus-4-8">Claude Opus 4.8 (most capable)</option>
     </select>
     <input type="text" id="anthropicModelCustom" class="custom-model"
+      data-i18n-ph="customModelPh" placeholder="Custom model ID (optional)" autocomplete="off" />
+  </div>
+
+  <div class="field provider-block" data-provider="gemini">
+    <label for="geminiModel" data-i18n="geminiModelLabel">Gemini model</label>
+    <select id="geminiModel">
+      <option value="gemini-2.5-flash">gemini-2.5-flash (fast &amp; cheap, recommended)</option>
+      <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite (lowest cost)</option>
+      <option value="gemini-2.5-pro">gemini-2.5-pro (high quality)</option>
+      <option value="gemini-2.0-flash">gemini-2.0-flash</option>
+    </select>
+    <input type="text" id="geminiModelCustom" class="custom-model"
       data-i18n-ph="customModelPh" placeholder="Custom model ID (optional)" autocomplete="off" />
   </div>
 
