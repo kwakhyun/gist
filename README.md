@@ -126,6 +126,12 @@ git clone https://github.com/kwakhyun/gist.git
 
 ---
 
+## 📄 라이선스
+
+[MIT](LICENSE) © kwakhyun
+
+---
+
 <p align="center">
   <img src="icons/icon48.png" width="28" /><br/>
   <sub>Made with the Gist extension · Bring your own key, keep your privacy.</sub>
